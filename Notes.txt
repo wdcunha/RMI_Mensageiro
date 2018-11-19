@@ -1,0 +1,12 @@
+javac *.java
+
+java -Djava.security.policy=policy.all StartServer
+
+java -Djava.security.policy=policy.all StartClient
+
+
+
+http://www.ejbtutorial.com/java-rmi/java-rmi-example-group-chat-implementation
+
+
+https://github.com/daraghwalshe/Java-RMI-Chat
