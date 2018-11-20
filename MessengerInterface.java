@@ -7,6 +7,6 @@ public interface MessengerInterface  extends Remote{
 
 	public void diz(String texto) throws RemoteException;
 
-	public void msgPv(int[] grupoPrivado, String msgPrivada)throws RemoteException;
+	public void msgPv(String userRemoto, String msg, String quemMandou)throws RemoteException;
 
 }

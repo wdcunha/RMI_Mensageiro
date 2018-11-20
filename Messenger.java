@@ -25,5 +25,11 @@ public class Messenger extends UnicastRemoteObject implements MessengerInterface
 
 	}
 
-  
+	public void msgPv(String userRemoto, String msg, String quemMandou) throws RemoteException{
+
+		System.out.println("userRemoto é: " + userRemoto);
+		System.out.println("msg é: " + msg);
+		System.out.println("quemMandou é: " + quemMandou);
+	}
+
 }

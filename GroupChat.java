@@ -13,7 +13,7 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 
   		lista.put(msg.getNomeUsuario(), msg);
   		msg.diz("[Servidor] Bemvindo " + msg.getNomeUsuario());
-
+  		//
 		return true;
 	}
 
@@ -34,7 +34,7 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 		       try{
 
 		    	   mensagem.diz("\n[" + deQuem.getNomeUsuario() + "] " + texto);
-
+				// OUTPUT PARA O FICHEIRO HS
 		       } catch(Exception e){
 
   		       e.printStackTrace();
@@ -50,12 +50,12 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 		return msg;
 	}
 
-  public void msgPv(int[] grupoPrivado, String msgPrivada) throws RemoteException{
-		Chatter pc;
-		for(int i : grupoPrivado){
-			pc= chatters.elementAt(i);
-			pc.getClient().messageFromServer(msgPrivada);
-		}
-	}
+//  public void msgPv(int[] grupoPrivado, String msgPrivada) throws RemoteException{
+//		Chatter pc;
+//		for(int i : grupoPrivado){
+//			pc= chatters.elementAt(i);
+//			pc.getClient().messageFromServer(msgPrivada);
+//		}
+//	}
 
 }
