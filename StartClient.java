@@ -1,3 +1,5 @@
+// package RIMI_Mensageiro.Cliente;
+
 import java.rmi.*;
 import java.rmi.registry.*;
 import java.rmi.server.*;
@@ -22,9 +24,30 @@ public class StartClient {
 	      server.login(m);
 	      server.enviaPraTodos("Acabou de se conectar!", m);
 
+        DataInputStream digita = new DataInputStream (System.in);
+        String aa = "";
+
 	      for(;;){
-	    	  String aa = scanner.nextLine();
-  			  server.enviaPraTodos(aa, m);
+	    	  // aa = scanner.nextLine();
+
+          aa = digita.readLine();
+
+          switch(aa){
+            case ">>":
+              // System.out.println("Entrou no switch with aa!");
+              server.enviarPrivado("Paul","Hi Paul", m);
+              break;
+          }
+
+          if(aa == ":pv"){
+    				// int[] privateList = list.getSelectedIndices();
+            //
+    				// for(int i=0; i<privateList.length; i++){
+    					// System.out.println("selected index :" + privateList[i]);
+    					System.out.println("Entrou no if aa!");
+    				} else {
+              server.enviaPraTodos(aa, m);
+            }
     	  }
      } catch (Exception e) {
         System.out.println("Exceção ao tentar arrancar StartClient: " + e);

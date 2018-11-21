@@ -7,7 +7,7 @@ javac \*.java
 
 * Para executar o servidor do mensageiro:
 
-java -Djava.security.policy=policy.all StartClient
+java -Djava.security.policy=policy.all StartServer
 
 * Para executar o cliente:
 

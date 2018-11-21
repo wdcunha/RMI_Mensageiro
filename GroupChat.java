@@ -1,3 +1,5 @@
+// package RIMI_Mensageiro.Servidor;
+
 import java.rmi.*;
 import java.rmi.Naming;
 import java.rmi.server.*;
@@ -6,13 +8,15 @@ import java.util.*;
 public class GroupChat extends UnicastRemoteObject implements GroupChatInterface{
 
 	private Hashtable lista = new Hashtable();
+	private Enumeration usuarios;
+
 
 	public GroupChat() throws RemoteException{ }
 
 	public boolean login(MessengerInterface dadosUsuario) throws RemoteException{
 
   		lista.put(dadosUsuario.getNomeUsuario(), dadosUsuario);
-  		dadosUsuario.diz("[Servidor] Bemvindo " + dadosUsuario.getNomeUsuario());
+  		dadosUsuario.diz("[Servidor] Bem-vindo " + dadosUsuario.getNomeUsuario());
   		//
 		return true;
 	}
@@ -20,7 +24,8 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 	public void enviaPraTodos(String texto, MessengerInterface deQuem) throws RemoteException{
 
 		System.out.println("\n[" + deQuem.getNomeUsuario() + "] " + texto);
-		Enumeration usuarios = lista.keys();
+		// Enumeration usuarios = lista.keys();
+		listaUsuarios();
 
     while(usuarios.hasMoreElements()){
        String usuario = (String) usuarios.nextElement();
@@ -42,12 +47,21 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 		return msg;
 	}
 
-//  public void msgPv(int[] grupoPrivado, String msgPrivada) throws RemoteException{
-//		Chatter pc;
-//		for(int i : grupoPrivado){
-//			pc= chatters.elementAt(i);
-//			pc.getClient().messageFromServer(msgPrivada);
-//		}
-//	}
+	public void enviarPrivado(String usuarioDestino, String msg, MessengerInterface quemMandou) throws RemoteException{
+		System.out.println("usuarioDestino é: " + usuarioDestino);
+		System.out.println("msg é: " + msg);
+		System.out.println("quemMandou é: " + quemMandou.getNomeUsuario());
+		// System.out.println("lista: " + lista.toString());
+		listaUsuarios();
+		while (usuarios.hasMoreElements()){
+      // System.out.println("Elements: ");
+      System.out.println(usuarios.nextElement());
+    }
 
+	}
+
+	public Enumeration listaUsuarios()throws RemoteException{
+		usuarios = lista.keys();
+		return usuarios;
+	}
 }
