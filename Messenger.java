@@ -1,5 +1,8 @@
+// package RIMI_Mensageiro.Cliente;
+
 import java.rmi.*;
 import java.rmi.server.*;
+// import Servidor.GroupChatInterface;
 
 public class Messenger extends UnicastRemoteObject implements MessengerInterface{
 
@@ -15,14 +18,8 @@ public class Messenger extends UnicastRemoteObject implements MessengerInterface
 		return nomeUsuario;
 	}
 
-	public void diz(String s) throws RemoteException{
-		System.out.println(s);
-	}
-
-	public void msgPv(String usuarioDestino, String msg, String quemMandou) throws RemoteException{
-		System.out.println("userRemoto é: " + usuarioDestino);
-		System.out.println("msg é: " + msg);
-		System.out.println("quemMandou é: " + quemMandou);
+	public void diz(String texto) throws RemoteException{
+		System.out.println(texto);
 	}
 
 }

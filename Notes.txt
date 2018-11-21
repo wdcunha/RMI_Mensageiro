@@ -1,12 +1,22 @@
+* Criar script no Mac:
+chmod 700 1runcdmsScript-Servidor
+chmod 700 2runcdmsScript-Cliente
+
+* Executar script no Mac:
+./1runcdmsScript-Servidor
+./2runcdmsScript-Cliente
+https://www.hastac.org/blogs/joe-cutajar/2015/04/21/how-make-simple-bash-script-mac
+
+* Compilar classes (arquivos .java):
 javac *.java
 
+* Executa servidor:
 java -Djava.security.policy=policy.all StartServer
 
+* Executa cliente:
 java -Djava.security.policy=policy.all StartClient
 
 
-
+* Fontes de consulta/exemplos:
 http://www.ejbtutorial.com/java-rmi/java-rmi-example-group-chat-implementation
-
-
 https://github.com/daraghwalshe/Java-RMI-Chat

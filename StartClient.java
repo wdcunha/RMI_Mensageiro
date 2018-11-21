@@ -1,3 +1,5 @@
+// package RIMI_Mensageiro.Cliente;
+
 import java.rmi.*;
 import java.rmi.registry.*;
 import java.rmi.server.*;
@@ -22,9 +24,39 @@ public class StartClient {
 	      server.login(m);
 	      server.enviaPraTodos("Acabou de se conectar!", m);
 
+        DataInputStream digita = new DataInputStream (System.in);
+        String aa = "";
+
 	      for(;;){
-	    	  String aa = scanner.nextLine();
-  			  server.enviaPraTodos(aa, m);
+	    	  // aa = scanner.nextLine();
+
+          System.out.print("Você: ");
+          aa = digita.readLine();
+
+          switch(aa){
+            case ">>":
+              server.listaUsuarios(m);
+              String selecionado = digita.readLine();
+              System.out.print("Msg: ");
+              String msgPv = digita.readLine();
+              server.enviarPrivado(selecionado,msgPv, m);
+              break;
+
+            default :
+              server.enviaPraTodos(aa, m);
+              break;
+          }
+
+          if(aa.equals(">>")){
+    				// int[] privateList = list.getSelectedIndices();
+            //
+    				// for(int i=0; i<privateList.length; i++){
+    					// System.out.println("selected index :" + privateList[i]);
+    					// System.out.println("Entrou no if aa!");
+    				} else {
+              // System.out.println("NÃO Entrou no if aa!");
+
+            }
     	  }
      } catch (Exception e) {
         System.out.println("Exceção ao tentar arrancar StartClient: " + e);

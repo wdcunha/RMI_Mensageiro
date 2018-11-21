@@ -1,3 +1,5 @@
+// package RIMI_Mensageiro.Servidor;
+
 import java.rmi.*;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
