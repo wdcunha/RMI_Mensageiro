@@ -30,23 +30,32 @@ public class StartClient {
 	      for(;;){
 	    	  // aa = scanner.nextLine();
 
+          System.out.print("Você: ");
           aa = digita.readLine();
 
           switch(aa){
             case ">>":
-              // System.out.println("Entrou no switch with aa!");
-              server.enviarPrivado("Paul","Hi Paul", m);
+              server.listaUsuarios(m);
+              String selecionado = digita.readLine();
+              System.out.print("Msg: ");
+              String msgPv = digita.readLine();
+              server.enviarPrivado(selecionado,msgPv, m);
+              break;
+
+            default :
+              server.enviaPraTodos(aa, m);
               break;
           }
 
-          if(aa == ":pv"){
+          if(aa.equals(">>")){
     				// int[] privateList = list.getSelectedIndices();
             //
     				// for(int i=0; i<privateList.length; i++){
     					// System.out.println("selected index :" + privateList[i]);
-    					System.out.println("Entrou no if aa!");
+    					// System.out.println("Entrou no if aa!");
     				} else {
-              server.enviaPraTodos(aa, m);
+              // System.out.println("NÃO Entrou no if aa!");
+
             }
     	  }
      } catch (Exception e) {

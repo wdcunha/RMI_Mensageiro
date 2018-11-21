@@ -18,8 +18,8 @@ public class Messenger extends UnicastRemoteObject implements MessengerInterface
 		return nomeUsuario;
 	}
 
-	public void diz(String s) throws RemoteException{
-		System.out.println(s);
+	public void diz(String texto) throws RemoteException{
+		System.out.println(texto);
 	}
 
 }

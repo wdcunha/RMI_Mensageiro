@@ -15,6 +15,6 @@ public interface GroupChatInterface extends Remote {
 
 		public void enviarPrivado(String usuarioDestino, String msg, MessengerInterface quemMandou)throws RemoteException;
 
-		public Enumeration listaUsuarios()throws RemoteException;
+		public void listaUsuarios(MessengerInterface quemSolicitou)throws RemoteException;
 
 }

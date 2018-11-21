@@ -8,8 +8,6 @@ import java.util.*;
 public class GroupChat extends UnicastRemoteObject implements GroupChatInterface{
 
 	private Hashtable lista = new Hashtable();
-	private Enumeration usuarios;
-
 
 	public GroupChat() throws RemoteException{ }
 
@@ -25,7 +23,7 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 
 		System.out.println("\n[" + deQuem.getNomeUsuario() + "] " + texto);
 		// Enumeration usuarios = lista.keys();
-		listaUsuarios();
+		Enumeration usuarios = lista.keys();
 
     while(usuarios.hasMoreElements()){
        String usuario = (String) usuarios.nextElement();
@@ -52,16 +50,24 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 		System.out.println("msg é: " + msg);
 		System.out.println("quemMandou é: " + quemMandou.getNomeUsuario());
 		// System.out.println("lista: " + lista.toString());
-		listaUsuarios();
-		while (usuarios.hasMoreElements()){
-      // System.out.println("Elements: ");
-      System.out.println(usuarios.nextElement());
-    }
-
+		MessengerInterface destino = (MessengerInterface) lista.get(usuarioDestino);
+		System.out.println("usuarioDestino: " + usuarioDestino);
+		destino.diz("\n*PM* [" + quemMandou.getNomeUsuario() + "] " + msg);
 	}
 
-	public Enumeration listaUsuarios()throws RemoteException{
-		usuarios = lista.keys();
-		return usuarios;
+	public void listaUsuarios(MessengerInterface quemSolicitou)throws RemoteException{
+		MessengerInterface mensagem = (MessengerInterface) lista.get(quemSolicitou.getNomeUsuario());
+		System.out.println("quemSolicitou: " + quemSolicitou.getNomeUsuario());
+
+		Set<String> keys = lista.keySet();
+		mensagem.diz("\n" + "Para Mensagem Privada, informe qual dos\n" +"Usuários online:");
+
+    for(String key: keys){
+			if (key.equals(quemSolicitou.getNomeUsuario())){
+			 continue;
+			}
+      System.out.println("Value of key: "+key);
+			mensagem.diz(key);
+    }
 	}
 }
