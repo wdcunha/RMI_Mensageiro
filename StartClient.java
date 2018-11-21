@@ -5,38 +5,30 @@ import java.io.*;
 import java.util.*;
 
 public class StartClient {
+  public static void main(String[] args) {
+    try {
+	      System.setSecurityManager(new RMISecurityManager());
 
-    public static void main(String[] args) {
+	      GroupChatInterface server = (GroupChatInterface)Naming.lookup("rmi://localhost/ABCD");
 
-      try {
-        
-		      System.setSecurityManager(new RMISecurityManager());
+	      Scanner scanner = new Scanner(System.in);
 
-		      GroupChatInterface server = (GroupChatInterface)Naming.lookup("rmi://localhost/ABCD");
+	      System.out.println("[System] Mensageiro Cliente está em execução!");
+	      System.out.println("Informe o nome do usuário para login e pressione Enter: ");
 
-		      Scanner scanner = new Scanner(System.in);
+	      String nomeUsuario = scanner.nextLine();
+	      MessengerInterface m = new Messenger(nomeUsuario, server);
 
-		      System.out.println("[System] Mensageiro Cliente está em execução!");
-		      System.out.println("Informe o nome do usuário para login e pressione Enter: ");
+	      server.login(m);
+	      server.enviaPraTodos("Acabou de se conectar!", m);
 
-		      String nomeUsuario = scanner.nextLine();
-		      MessengerInterface m = new Messenger(nomeUsuario, server);
-
-		      server.login(m);
-		      server.enviaPraTodos("Acabou de se conectar!", m);
-
-		      for(;;){
-
-		    	  String aa = scanner.nextLine();
-    			  server.enviaPraTodos(aa, m);
-
-	    	  }
-
-       } catch (Exception e) {
-
-          System.out.println("Exceção ao tentar arrancar StartClient: " + e);
-          e.printStackTrace();
-
-       }
-    }
+	      for(;;){
+	    	  String aa = scanner.nextLine();
+  			  server.enviaPraTodos(aa, m);
+    	  }
+     } catch (Exception e) {
+        System.out.println("Exceção ao tentar arrancar StartClient: " + e);
+        e.printStackTrace();
+     }
+  }
 }

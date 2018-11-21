@@ -9,10 +9,10 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 
 	public GroupChat() throws RemoteException{ }
 
-	public boolean login(MessengerInterface msg) throws RemoteException{
+	public boolean login(MessengerInterface dadosUsuario) throws RemoteException{
 
-  		lista.put(msg.getNomeUsuario(), msg);
-  		msg.diz("[Servidor] Bemvindo " + msg.getNomeUsuario());
+  		lista.put(dadosUsuario.getNomeUsuario(), dadosUsuario);
+  		dadosUsuario.diz("[Servidor] Bemvindo " + dadosUsuario.getNomeUsuario());
   		//
 		return true;
 	}
@@ -22,31 +22,23 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 		System.out.println("\n[" + deQuem.getNomeUsuario() + "] " + texto);
 		Enumeration usuarios = lista.keys();
 
-        while(usuarios.hasMoreElements()){
-
-		       String usuario = (String) usuarios.nextElement();
-		       MessengerInterface mensagem = (MessengerInterface) lista.get(usuario);
-
-		       if (usuario.equals(deQuem.getNomeUsuario())){
-		       	continue;
-		       }
-
-		       try{
-
-		    	   mensagem.diz("\n[" + deQuem.getNomeUsuario() + "] " + texto);
+    while(usuarios.hasMoreElements()){
+       String usuario = (String) usuarios.nextElement();
+       MessengerInterface mensagem = (MessengerInterface) lista.get(usuario);
+       if (usuario.equals(deQuem.getNomeUsuario())){
+       	continue;
+       }
+       try{
+    	   mensagem.diz("\n[" + deQuem.getNomeUsuario() + "] " + texto);
 				// OUTPUT PARA O FICHEIRO HS
-		       } catch(Exception e){
-
-  		       e.printStackTrace();
-
-		       }
-        }
+       } catch(Exception e){
+	       e.printStackTrace();
+       }
+    }
 	}
 
 	public MessengerInterface getMessenger(String nomeUsuario)  throws RemoteException{
-
-  		MessengerInterface msg = (MessengerInterface) lista.get(nomeUsuario);
-
+		MessengerInterface msg = (MessengerInterface) lista.get(nomeUsuario);
 		return msg;
 	}
 
