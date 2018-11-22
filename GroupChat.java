@@ -46,28 +46,27 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 	}
 
 	public void enviarPrivado(String usuarioDestino, String msg, MessengerInterface quemMandou) throws RemoteException{
-		System.out.println("usuarioDestino é: " + usuarioDestino);
-		System.out.println("msg é: " + msg);
-		System.out.println("quemMandou é: " + quemMandou.getNomeUsuario());
-		// System.out.println("lista: " + lista.toString());
 		MessengerInterface destino = (MessengerInterface) lista.get(usuarioDestino);
-		System.out.println("usuarioDestino: " + usuarioDestino);
-		destino.diz("\n*PM* [" + quemMandou.getNomeUsuario() + "] " + msg);
+		try{
+			destino.diz("*MP* [" + quemMandou.getNomeUsuario() + "] " + msg);
+		} catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	public void listaUsuarios(MessengerInterface quemSolicitou)throws RemoteException{
 		MessengerInterface mensagem = (MessengerInterface) lista.get(quemSolicitou.getNomeUsuario());
-		System.out.println("quemSolicitou: " + quemSolicitou.getNomeUsuario());
-
 		Set<String> keys = lista.keySet();
-		mensagem.diz("\n" + "Para Mensagem Privada, informe qual dos\n" +"Usuários online:");
-
-    for(String key: keys){
-			if (key.equals(quemSolicitou.getNomeUsuario())){
-			 continue;
+		try {
+			for(String key: keys){
+				if (key.equals(quemSolicitou.getNomeUsuario())){
+					continue;
+				}
+				mensagem.diz(key);
 			}
-      System.out.println("Value of key: "+key);
-			mensagem.diz(key);
-    }
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 }
