@@ -16,50 +16,46 @@ public class StartClient {
 	      Scanner scanner = new Scanner(System.in);
 
 	      System.out.println("[System] Mensageiro Cliente está em execução!");
-	      System.out.println("Informe o nome do usuário para login e pressione Enter: ");
+	      System.out.print("Informe o nome do usuário para login e pressione Enter: ");
 
 	      String nomeUsuario = scanner.nextLine();
 	      MessengerInterface m = new Messenger(nomeUsuario, server);
 
 	      server.login(m);
 	      server.enviaPraTodos("Acabou de se conectar!", m);
+        System.out.println("Para Msg Privada (MP) \n" + "digite >> a qualquer momento");
 
         DataInputStream digita = new DataInputStream (System.in);
         String aa = "";
 
 	      for(;;){
-	    	  // aa = scanner.nextLine();
 
           System.out.print("Você: ");
           aa = digita.readLine();
 
           switch(aa){
             case ">>":
+              System.out.println("\nPara Mensagem Privada, informe qual dos\n" + "Usuários online:");
               server.listaUsuarios(m);
               String selecionado = digita.readLine();
               System.out.print("Msg: ");
               String msgPv = digita.readLine();
+              System.out.println("\nPara finalizar MP, digite << \n"+ "a qualquer momento!" );
               server.enviarPrivado(selecionado,msgPv, m);
+              do {
+                System.out.print("*MP* Você: ");
+                msgPv = digita.readLine();
+                server.enviarPrivado(selecionado,msgPv, m);
+              } while(!msgPv.equals("<<"));
               break;
 
-            default :
+            default:
               server.enviaPraTodos(aa, m);
               break;
           }
-
-          if(aa.equals(">>")){
-    				// int[] privateList = list.getSelectedIndices();
-            //
-    				// for(int i=0; i<privateList.length; i++){
-    					// System.out.println("selected index :" + privateList[i]);
-    					// System.out.println("Entrou no if aa!");
-    				} else {
-              // System.out.println("NÃO Entrou no if aa!");
-
-            }
     	  }
      } catch (Exception e) {
-        System.out.println("Exceção ao tentar arrancar StartClient: " + e);
+        System.out.println("Erro ocorrido em StartClient: " + e);
         e.printStackTrace();
      }
   }
