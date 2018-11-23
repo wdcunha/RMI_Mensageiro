@@ -4,6 +4,11 @@ import java.rmi.*;
 import java.rmi.Naming;
 import java.rmi.server.*;
 import java.util.*;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class GroupChat extends UnicastRemoteObject implements GroupChatInterface{
 
@@ -24,6 +29,10 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 		System.out.println("\n[" + deQuem.getNomeUsuario() + "] " + texto);
 		// Enumeration usuarios = lista.keys();
 		Enumeration usuarios = lista.keys();
+		String agora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MMM/uu HH:mm"));
+		String msgTratada = "\n |" + agora + "| [" + deQuem.getNomeUsuario() + "] " + texto;
+		// OUTPUT PARA O FICHEIRO HS
+		geraArquivo(msgTratada);
 
     while(usuarios.hasMoreElements()){
        String usuario = (String) usuarios.nextElement();
@@ -32,8 +41,7 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
        	continue;
        }
        try{
-    	   mensagem.diz("\n[" + deQuem.getNomeUsuario() + "] " + texto);
-				// OUTPUT PARA O FICHEIRO HS
+    	   mensagem.diz(msgTratada);
        } catch(Exception e){
 	       e.printStackTrace();
        }
@@ -54,19 +62,36 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 		}
 	}
 
+	// quemSolicitou serve para indicar a quem devolver a lista (somente para ele)
 	public void listaUsuarios(MessengerInterface quemSolicitou)throws RemoteException{
 		MessengerInterface mensagem = (MessengerInterface) lista.get(quemSolicitou.getNomeUsuario());
 		Set<String> keys = lista.keySet();
 		try {
 			for(String key: keys){
 				if (key.equals(quemSolicitou.getNomeUsuario())){
-					continue;
+					key = key + " (You)";
 				}
 				mensagem.diz(key);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-
 	}
+
+	public void geraArquivo(String texto)throws RemoteException{
+		System.out.println("Entrou em geraArquivo chamado em GroupChat");
+
+		Path path = Paths.get("historicoConversas.txt");
+		byte[] strToBytes = texto.getBytes();
+		try {
+			Files.write(path, strToBytes,
+					StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+			String read = Files.readAllLines(path).get(0);
+		} catch(IOException e) {
+			e.printStackTrace();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
