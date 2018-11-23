@@ -31,8 +31,8 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 		Enumeration usuarios = lista.keys();
 		String agora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MMM/uu HH:mm"));
 		String msgTratada = "\n |" + agora + "| [" + deQuem.getNomeUsuario() + "] " + texto;
-		// OUTPUT PARA O FICHEIRO HS
-		geraArquivo(msgTratada);
+		// OUTPUT PARA UM FICHEIRO
+		geraArquivo(msgTratada, "historicoConversas.txt");
 
     while(usuarios.hasMoreElements()){
        String usuario = (String) usuarios.nextElement();
@@ -55,8 +55,16 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 
 	public void enviarPrivado(String usuarioDestino, String msg, MessengerInterface quemMandou) throws RemoteException{
 		MessengerInterface destino = (MessengerInterface) lista.get(usuarioDestino);
+		String agora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MMM/uu HH:mm"));
+		String msgTratada = "\n |" + agora + "| *MP* [" + quemMandou.getNomeUsuario() + "] " + msg;
+		String nomeArquivoDeQuem = quemMandou.getNomeUsuario() + ".txt";
+		String nomeArquivoParaQuem = destino.getNomeUsuario() + ".txt";
+		// OUTPUT PARA UM FICHEIRO
+		geraArquivo(msgTratada, nomeArquivoDeQuem);
+		geraArquivo(msgTratada, nomeArquivoParaQuem);
+
 		try{
-			destino.diz("*MP* [" + quemMandou.getNomeUsuario() + "] " + msg);
+			destino.diz(msgTratada);
 		} catch(Exception e){
 			e.printStackTrace();
 		}
@@ -78,15 +86,13 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 		}
 	}
 
-	public void geraArquivo(String texto)throws RemoteException{
-		System.out.println("Entrou em geraArquivo chamado em GroupChat");
-
-		Path path = Paths.get("historicoConversas.txt");
+	public void geraArquivo(String texto, String nomeArquivo)throws RemoteException{
+		Path path = Paths.get(nomeArquivo);
 		byte[] strToBytes = texto.getBytes();
 		try {
 			Files.write(path, strToBytes,
 					StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-			String read = Files.readAllLines(path).get(0);
+			// String read = Files.readAllLines(path).get(0);
 		} catch(IOException e) {
 			e.printStackTrace();
 		} catch(Exception e) {

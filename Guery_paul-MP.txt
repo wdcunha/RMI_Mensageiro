@@ -1,0 +1,5 @@
+
+ |23/Nov/18 17:16| *MP* [Guery] Hey Man!!
+ |23/Nov/18 17:16| *MP* [Guery] This is a private message functionalaty
+ |23/Nov/18 17:17| *MP* [Guery] now I want to see if it is saving in a file
+ |23/Nov/18 17:17| *MP* [Guery] It seems that is super good

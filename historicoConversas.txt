@@ -38,3 +38,9 @@
  |23/Nov/18 15:40| [Roger] Hey Fox!!!
  |23/Nov/18 15:40| [Roger] h r u doing?
  |23/Nov/18 15:45| [Roger] Hey Folks!!
+ |23/Nov/18 17:15| [paul] Acabou de se conectar!
+ |23/Nov/18 17:15| [Guery] Acabou de se conectar!
+ |23/Nov/18 17:17| [Hosana] Acabou de se conectar!
+ |23/Nov/18 18:02| [Paul] Acabou de se conectar!
+ |23/Nov/18 18:02| [Roger] Acabou de se conectar!
+ |23/Nov/18 18:02| [Jonny] Acabou de se conectar!
