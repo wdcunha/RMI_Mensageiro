@@ -17,6 +17,6 @@ public interface GroupChatInterface extends Remote {
 
 		public void listaUsuarios(MessengerInterface quemSolicitou)throws RemoteException;
 
-		public void geraArquivo(String texto)throws RemoteException;
+		public void geraArquivo(String texto, String nomeArquivo)throws RemoteException;
 
 }

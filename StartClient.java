@@ -31,14 +31,14 @@ public class StartClient {
 
           switch(aa){
             case "//":
-            System.out.println("\n***************************************\n"
-                                + "**                                   **\n"
-                                + "** Menu: (a qualquer momento digite)" + " **\n"
-                                + "** Ver Menu: //" + "                      **\n"
-                                + "** Usuários online: ??" + "               **\n"
-                                + "** Msg Privada (MP): >>" + "              **\n"
-                                + "**                                   **\n"
-                                + "***************************************\n");
+            System.out.println("\n****************************************\n"
+                                + "**                                    **\n"
+                                + "**  Menu: (a qualquer momento digite)" + " **\n"
+                                + "**  Ver Menu:           //" + "            **\n"
+                                + "**  Usuários online:    ??" + "            **\n"
+                                + "**  Msg Privada (MP):   >>" + "            **\n"
+                                + "**                                    **\n"
+                                + "****************************************\n");
               break;
 
             case "??":

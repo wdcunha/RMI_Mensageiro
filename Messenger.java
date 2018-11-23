@@ -19,7 +19,6 @@ public class Messenger extends UnicastRemoteObject implements MessengerInterface
 	}
 
 	public void diz(String texto) throws RemoteException{
-		// server.geraArquivo(texto);
 		System.out.println(texto);
 	}
 

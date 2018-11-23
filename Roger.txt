@@ -1,0 +1,14 @@
+
+ |23/Nov/18 18:03| *MP* [Jonny] hey Roger
+ |23/Nov/18 18:03| *MP* [Jonny] let's test new feature 
+ |23/Nov/18 18:03| *MP* [Jonny] that is to save chat history for pm
+ |23/Nov/18 18:04| *MP* [Jonny] now we can see if it is working well
+ |23/Nov/18 18:04| *MP* [Roger] Hey Jonny
+ |23/Nov/18 18:04| *MP* [Roger] great news then
+ |23/Nov/18 18:05| *MP* [Roger] so now it should save in the same files generated before
+ |23/Nov/18 18:05| *MP* [Roger] but independently for each one
+ |23/Nov/18 18:06| *MP* [Roger] is it right?
+ |23/Nov/18 18:06| *MP* [Jonny] that's right buddy
+ |23/Nov/18 18:06| *MP* [Jonny] it is what we expect it does
+ |23/Nov/18 18:06| *MP* [Jonny] let's check in the file
+ |23/Nov/18 18:06| *MP* [Jonny] wait a sec
