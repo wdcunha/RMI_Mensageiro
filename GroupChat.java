@@ -1,4 +1,3 @@
-// package RIMI_Mensageiro.Servidor;
 
 import java.rmi.*;
 import java.rmi.Naming;
@@ -9,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class GroupChat extends UnicastRemoteObject implements GroupChatInterface{
 
@@ -19,8 +19,40 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 	public boolean login(MessengerInterface dadosUsuario) throws RemoteException{
 
   		lista.put(dadosUsuario.getNomeUsuario(), dadosUsuario);
-  		dadosUsuario.diz("[Servidor] Bem-vindo " + dadosUsuario.getNomeUsuario());
-  		//
+  		dadosUsuario.diz("[Servidor] Bem-vindo " + dadosUsuario.getNomeUsuario()+ "!");
+
+			// carrega histórico msg a todos
+			String nomeArquivo = "historicoConversas.txt";
+			Path path = Paths.get(nomeArquivo);
+			if (new File(nomeArquivo).exists()) {
+				try {
+					List<String> allLines = Files.readAllLines(path);
+					for (String line : allLines) {
+						dadosUsuario.diz(line);
+					}
+				} catch(IOException e) {
+					e.printStackTrace();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			// verifica se há ficheiro de histórico msg priv e carrega em tela
+			nomeArquivo = dadosUsuario.getNomeUsuario()+ ".txt";
+			path = Paths.get(nomeArquivo);
+			if (new File(nomeArquivo).exists()) {
+				try {
+					List<String> allLines = Files.readAllLines(path);
+					for (String line : allLines) {
+						dadosUsuario.diz(line);
+					}
+				} catch(IOException e) {
+					e.printStackTrace();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			//
 		return true;
 	}
 
