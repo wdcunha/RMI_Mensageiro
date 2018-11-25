@@ -16,7 +16,11 @@ java -Djava.security.policy=policy.all StartServer
 * Executa cliente:
 java -Djava.security.policy=policy.all StartClient
 
+* O segredo para manter os arquivos de cliente e servidor em diretórios separados é ter as interfaces
+nos dois locais, assim como policy.all, além da linha do createRegistry no StartServer.
+
 
 * Fontes de consulta/exemplos:
 http://www.ejbtutorial.com/java-rmi/java-rmi-example-group-chat-implementation
 https://github.com/daraghwalshe/Java-RMI-Chat
+http://www.ejbtutorial.com/java-rmi/how-to-transfer-or-copy-a-file-between-computers-using-java-rmi

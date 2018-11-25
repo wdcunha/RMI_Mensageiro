@@ -21,11 +21,11 @@ public class StartServer {
 
             Naming.rebind("rmi://localhost/ABCD", obj);
 
-            System.out.println("[System] Chat Server iniciado com sucesso!");
+            System.out.println("[System] Mensageiro iniciado com sucesso!");
 
       	 } catch (Exception e) {
 
-            System.out.println("Chat Server falhou por problema com: " + e);
+            System.out.println("Mensageiro falhou por problema com: " + e);
 
       }
     }

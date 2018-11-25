@@ -102,7 +102,7 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 		}
 	}
 
-	// quemSolicitou serve para indicar a quem devolver a lista (somente para ele)
+	// 'quemSolicitou' serve para indicar a quem devolver a lista (somente para ele)
 	public void listaUsuarios(MessengerInterface quemSolicitou)throws RemoteException{
 		MessengerInterface mensagem = (MessengerInterface) lista.get(quemSolicitou.getNomeUsuario());
 		Set<String> keys = lista.keySet();
@@ -132,4 +132,15 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 		}
 	}
 
+	public boolean enviaArquivo(String arqDestino, byte[] dados, int carga, String paraQuem, String deQuem) throws RemoteException{
+		MessengerInterface origem = (MessengerInterface) lista.get(deQuem);
+		MessengerInterface destino = (MessengerInterface) lista.get(paraQuem);
+		String agora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MMM/uu HH:mm"));
+		String ref = "\n |" + agora + "| *MP* ";
+		if (destino.gravaArquivo(arqDestino, dados, carga)) {
+			destino.diz(ref + "Acaba de receber um arquivo de [" + origem.getNomeUsuario() + "] na pasta: " + arqDestino);
+			origem.diz("Arquivo |" + arqDestino + "| enviado com sucesso para ["+ destino.getNomeUsuario() + "]");
+		}
+		return true;
+	}
 }
