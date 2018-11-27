@@ -114,7 +114,7 @@ public class StartClient {
             String destinatario = digita.readLine();
             System.out.print("Indique o nome do ficheiro: ");
             String nomeArquivo = digita.readLine();
-            dadosUsuario.lerArquivo(nomeArquivo, destinatario);
+            dadosUsuario.lerArquivo(nomeArquivo, destinatario, server);
           break;
 
           default:

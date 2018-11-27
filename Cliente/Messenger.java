@@ -27,8 +27,8 @@ public class Messenger extends UnicastRemoteObject implements MessengerInterface
 		System.out.println(texto);
 	}
 
-	public boolean lerArquivo(String nomeArquivo, String paraQuem) throws RemoteException{
-		/* Sending The File...*/
+	public boolean lerArquivo(String nomeArquivo, String paraQuem, GroupChatInterface servidor) throws RemoteException{
+		/* Sending File...*/
 		 try{
 			 File arq = new File(nomeArquivo);
 			 FileInputStream lido = new FileInputStream(arq);
