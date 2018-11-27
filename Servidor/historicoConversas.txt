@@ -59,3 +59,23 @@
  |25/Nov/18 02:10| [Jonny] Acabou de se conectar!
  |25/Nov/18 02:41| [Paul] Acabou de se conectar!
  |25/Nov/18 02:43| [Jonny] Acabou de se conectar!
+ |25/Nov/18 09:23| [Jonny] Acabou de se conectar!
+ |25/Nov/18 09:24| [Paul] Acabou de se conectar!
+ |25/Nov/18 09:26| [Pedro] Acabou de se conectar!
+ |25/Nov/18 09:27| [Pedro] Acabou de se conectar!
+ |25/Nov/18 09:35| [Jonny] 
+ |25/Nov/18 09:35| [Pedro] ++++
+ |25/Nov/18 10:32| [Paul] Acabou de se conectar!
+ |25/Nov/18 10:32| [Roger] Acabou de se conectar!
+ |25/Nov/18 10:32| [Jonny] Acabou de se conectar!
+ |25/Nov/18 10:37| [Paul] teste
+ |25/Nov/18 10:41| [Roger] tdfytfdyt
+ |25/Nov/18 21:23| [Paul] Acabou de se conectar!
+ |25/Nov/18 21:23| [Jonny] Acabou de se conectar!
+ |25/Nov/18 21:23| [Jonny] hey guys
+ |27/Nov/18 11:22| [Paul] Acabou de se conectar!
+ |27/Nov/18 12:28| [Paul] Acabou de se conectar!
+ |27/Nov/18 14:44| [Paul] Acabou de se conectar!
+ |27/Nov/18 15:08| [Paul] Acabou de se conectar!
+ |27/Nov/18 19:36| [Paul] Acabou de se conectar!
+ |27/Nov/18 19:36| [Paul] Acabou de se conectar!

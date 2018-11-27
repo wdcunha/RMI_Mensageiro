@@ -19,7 +19,7 @@ public class StartServer {
 
     				GroupChat obj = new GroupChat();
 
-            Naming.rebind("rmi://localhost/ABCD", obj);
+            Naming.rebind("rmi://0.0.0.0/ABCD", obj);
 
             System.out.println("[System] Mensageiro iniciado com sucesso!");
 

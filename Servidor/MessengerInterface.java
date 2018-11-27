@@ -2,9 +2,11 @@
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface MessengerInterface  extends Remote{
+public interface MessengerInterface  extends UnicastRemoteObject{
 
 	public String getNomeUsuario() throws RemoteException;
+
+	public String getPasse() throws RemoteException;
 
 	public void diz(String texto) throws RemoteException;
 

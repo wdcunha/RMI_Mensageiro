@@ -12,47 +12,51 @@ import java.util.List;
 
 public class GroupChat extends UnicastRemoteObject implements GroupChatInterface{
 
-	private Hashtable lista = new Hashtable();
+	private Hashtable<String, MessengerInterface> lista = new Hashtable();
 
 	public GroupChat() throws RemoteException{ }
 
-	public boolean login(MessengerInterface dadosUsuario) throws RemoteException{
+	public boolean registro(MessengerInterface dadosUsuario) throws RemoteException{
+		if (!lista.containsKey(dadosUsuario.getNomeUsuario())) {
 
-  		lista.put(dadosUsuario.getNomeUsuario(), dadosUsuario);
-  		dadosUsuario.diz("[Servidor] Bem-vindo " + dadosUsuario.getNomeUsuario()+ "!");
+			System.out.println(" Usuário criado com Sucesso!");
+			lista.put(dadosUsuario.getNomeUsuario(), dadosUsuario);
 
-			// carrega histórico msg a todos
-			String nomeArquivo = "historicoConversas.txt";
-			Path path = Paths.get(nomeArquivo);
-			if (new File(nomeArquivo).exists()) {
-				try {
-					List<String> allLines = Files.readAllLines(path);
-					for (String line : allLines) {
-						dadosUsuario.diz(line);
-					}
-				} catch(IOException e) {
-					e.printStackTrace();
-				} catch(Exception e) {
-					e.printStackTrace();
+			return true;
+		}
+		return false;
+
+	}
+
+	public boolean login(String nomeUsuario, String passe, GroupChatInterface servidor) throws RemoteException{
+		try {
+			MessengerInterface usuarioLogado = this.lista.get(nomeUsuario);
+			if (!usuarioLogado.getPasse().equals(passe)){
+				usuarioLogado.diz("[Servidor] Bem-vindo " + usuarioLogado.getNomeUsuario()+ "!");
+				// carrega histórico msg a todos
+				String nomeArquivo = "historicoConversas.txt";
+				Path path = Paths.get(nomeArquivo);
+				if (new File(nomeArquivo).exists()) {
+						List<String> allLines = Files.readAllLines(path);
+						for (String line : allLines) {
+							usuarioLogado.diz(line);
+						}
 				}
-			}
-			// verifica se há ficheiro de histórico msg priv e carrega em tela
-			nomeArquivo = dadosUsuario.getNomeUsuario()+ ".txt";
-			path = Paths.get(nomeArquivo);
-			if (new File(nomeArquivo).exists()) {
-				try {
-					List<String> allLines = Files.readAllLines(path);
-					for (String line : allLines) {
-						dadosUsuario.diz(line);
-					}
-				} catch(IOException e) {
-					e.printStackTrace();
-				} catch(Exception e) {
-					e.printStackTrace();
+				// verifica se há ficheiro de histórico msg priv e carrega em tela
+				nomeArquivo = usuarioLogado.getNomeUsuario()+ ".txt";
+				path = Paths.get(nomeArquivo);
+				if (new File(nomeArquivo).exists()) {
+						List<String> allLines = Files.readAllLines(path);
+						for (String line : allLines) {
+							usuarioLogado.diz(line);
+						}
 				}
-			}
-
-			//
+			} else{
+        return false;
+      }
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		return true;
 	}
 
@@ -78,11 +82,6 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 	       e.printStackTrace();
        }
     }
-	}
-
-	public MessengerInterface getMessenger(String nomeUsuario)  throws RemoteException{
-		MessengerInterface msg = (MessengerInterface) lista.get(nomeUsuario);
-		return msg;
 	}
 
 	public void enviarPrivado(String usuarioDestino, String msg, MessengerInterface quemMandou) throws RemoteException{

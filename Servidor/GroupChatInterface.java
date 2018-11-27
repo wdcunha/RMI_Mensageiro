@@ -6,11 +6,11 @@ import java.util.*;
 
 public interface GroupChatInterface extends Remote {
 
-	  public boolean login(MessengerInterface msg) throws RemoteException;
+		public boolean registro(MessengerInterface dadosUsuario) throws RemoteException;
+
+	  public boolean login(String nomeUsuario, String passe, GroupChatInterface servidor) throws RemoteException;
 
 	  public void enviaPraTodos(String texto, MessengerInterface deQuem) throws RemoteException;
-
-	  public MessengerInterface getMessenger(String nomeUsuario)  throws RemoteException;
 
 		public void enviarPrivado(String usuarioDestino, String msg, MessengerInterface quemMandou)throws RemoteException;
 

@@ -24,3 +24,12 @@ nos dois locais, assim como policy.all, além da linha do createRegistry no Star
 http://www.ejbtutorial.com/java-rmi/java-rmi-example-group-chat-implementation
 https://github.com/daraghwalshe/Java-RMI-Chat
 http://www.ejbtutorial.com/java-rmi/how-to-transfer-or-copy-a-file-between-computers-using-java-rmi
+
+
+
+explode: qdo se tem string e quer ler usando delimitador
+fazer um for na array
+String[]
+array
+
+echo teste | sha256sum

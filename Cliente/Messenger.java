@@ -8,15 +8,19 @@ import java.util.*;
 public class Messenger extends UnicastRemoteObject implements MessengerInterface{
 
 	private String nomeUsuario;
-	private GroupChatInterface server;
+	private String passe;
 
-	public Messenger(String u, GroupChatInterface s) throws RemoteException {
+	public Messenger(String u, String p) throws RemoteException {
 		nomeUsuario = u;
-		server = s;
+		passe = p;
 	}
 
 	public String getNomeUsuario() throws RemoteException{
 		return nomeUsuario;
+	}
+
+	public String getPasse() throws RemoteException{
+		return passe;
 	}
 
 	public void diz(String texto) throws RemoteException{
@@ -32,7 +36,7 @@ public class Messenger extends UnicastRemoteObject implements MessengerInterface
 			 int carga = lido.read(dados);
 			 String arqDestino = "files/" + arq.getName();
 			 while(carga > 0){
-				 server.enviaArquivo(arqDestino, dados, carga, paraQuem, nomeUsuario);
+				 servidor.enviaArquivo(arqDestino, dados, carga, paraQuem, nomeUsuario);
 				 carga = lido.read(dados);
 		 		}
 

@@ -3,8 +3,9 @@
 import java.rmi.*;
 import java.rmi.registry.*;
 import java.rmi.server.*;
-import java.io.*;
 import java.util.*;
+import java.io.*;
+import java.io.Console.*;
 
 public class StartClient {
   public static void main(String[] args) {
@@ -14,18 +15,64 @@ public class StartClient {
       GroupChatInterface server = (GroupChatInterface)Naming.lookup("rmi://localhost/ABCD");
 
       Scanner scanner = new Scanner(System.in);
+      Console console = System.console();
 
+      System.out.print("\033[H\033[2J");
+      System.out.flush();
       System.out.println("[System] Mensageiro Cliente está em execução!");
-      System.out.print("Informe o nome do usuário para login e pressione Enter: ");
 
-      String nomeUsuario = scanner.nextLine();
-      MessengerInterface m = new Messenger(nomeUsuario, server);
+      System.out.print("Escolha uma das opções: \n1 - Registar\n2 - Login\n--> ");
+      String aa = scanner.nextLine();
+      boolean cond = false;
+      String nomeUsuario;
+      String passe;
+      MessengerInterface dadosUsuario = null;
 
-      server.login(m);
-      server.enviaPraTodos("Acabou de se conectar!", m);
+      while (!cond) {
+        switch(aa){
+          case "1":
+            System.out.print("\n ********************\n Regista novo usuário\n ********************\n");
+            System.out.print("Novo nome de usuário: ");
+            nomeUsuario = scanner.nextLine();
+            passe = new String(console.readPassword("Palavra passe: "));
+            if (nomeUsuario.equals("") || passe.equals("")) {
+              System.out.println("[System] Nome de usuário e/ou palavra passe devem ser preenchidos!");
+              aa = "1";
+              break;
+            }
+            dadosUsuario = new Messenger(nomeUsuario, passe);
+            if (server.registro(dadosUsuario)) {
+              System.out.println("[System] Usuário criado com Sucesso!");
+              aa = "2";
+            } else if (!server.registro(dadosUsuario)) {
+              System.out.println("\nNome de usuário [" +  dadosUsuario.getNomeUsuario() + "] já está cadastrado!");
+            }
+            break;
+
+          case "2":
+            dadosUsuario = null;
+            nomeUsuario = "";
+            passe = "";
+            System.out.print("\n ********\n  Login\n ********\n");
+            System.out.print("Nome do usuário: ");
+            nomeUsuario = scanner.nextLine();
+            passe = new String(console.readPassword("Palavra passe: "));
+            // dadosUsuario = new Messenger(nomeUsuario, passe, server);
+            server.login(nomeUsuario, passe, server);
+            server.enviaPraTodos("Acabou de se conectar!", dadosUsuario);
+            cond = true;
+            break;
+
+          default:
+            System.out.print("Opção inválida!");
+          break;
+        }
+      }
+
+
 
       DataInputStream digita = new DataInputStream (System.in);
-      String aa = "//";
+      aa = "//";
 
       for(;;){
 
@@ -43,35 +90,35 @@ public class StartClient {
             break;
 
           case "??":
-            server.listaUsuarios(m);
+            server.listaUsuarios(dadosUsuario);
             break;
 
           case ">>":
             System.out.println("\nPara Mensagem Privada, informe qual dos\n" + "Usuários online:");
-            server.listaUsuarios(m);
+            server.listaUsuarios(dadosUsuario);
             String selecionado = digita.readLine();
             System.out.print("Msg: ");
             String msgPv = digita.readLine();
             System.out.println("\nPara finalizar MP, digite << \n"+ "a qualquer momento!" );
-            server.enviarPrivado(selecionado,msgPv, m);
+            server.enviarPrivado(selecionado,msgPv, dadosUsuario);
             do {
               System.out.print("*MP* Você: ");
               msgPv = digita.readLine();
-              server.enviarPrivado(selecionado,msgPv, m);
+              server.enviarPrivado(selecionado,msgPv, dadosUsuario);
             } while(!msgPv.equals("<<"));
             break;
 
           case "++":
-            server.listaUsuarios(m);
+            server.listaUsuarios(dadosUsuario);
             System.out.print("Informe o destinatário do conteúdo: ");
             String destinatario = digita.readLine();
             System.out.print("Indique o nome do ficheiro: ");
             String nomeArquivo = digita.readLine();
-            m.lerArquivo(nomeArquivo, destinatario);
+            dadosUsuario.lerArquivo(nomeArquivo, destinatario);
           break;
 
           default:
-            server.enviaPraTodos(aa, m);
+            server.enviaPraTodos(aa, dadosUsuario);
             break;
         }
 
