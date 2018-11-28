@@ -28,8 +28,11 @@ public class StartClient {
       String passe;
       MessengerInterface dadosUsuario = null;
 
+      // looping destinado ao primeiro Menu: Registro e Login
       while (!cond) {
         switch(aa){
+
+          // opção para Registro
           case "1":
             System.out.print("\n ********************\n Regista novo usuário\n ********************\n");
             System.out.print("Novo nome de usuário: ");
@@ -50,6 +53,7 @@ public class StartClient {
             }
             break;
 
+          // opção para Login
           case "2":
             dadosUsuario = null;
             nomeUsuario = "";
@@ -58,6 +62,11 @@ public class StartClient {
             System.out.print("Nome do usuário: ");
             nomeUsuario = scanner.nextLine();
             passe = new String(console.readPassword("Palavra passe: "));
+            if (nomeUsuario.equals("") || passe.equals("")) {
+              System.out.println("[Sistema] Nome de usuário e/ou palavra passe devem ser preenchidos!");
+              aa = "2";
+              break;
+            }
             dadosUsuario = new Messenger(nomeUsuario, passe, server);
             if (server.login(dadosUsuario)) {
               server.enviaPraTodos("Acabou de se conectar!", dadosUsuario);
