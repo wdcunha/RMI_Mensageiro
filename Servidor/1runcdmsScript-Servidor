@@ -1,5 +1,7 @@
 #! /bin/bash
 
+rm *.class
+
 javac *.java
 
 java -Djava.security.policy=policy.all StartServer

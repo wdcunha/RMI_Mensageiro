@@ -79,3 +79,47 @@
  |27/Nov/18 15:08| [Paul] Acabou de se conectar!
  |27/Nov/18 19:36| [Paul] Acabou de se conectar!
  |27/Nov/18 19:36| [Paul] Acabou de se conectar!
+ |27/Nov/18 23:54| [Roger] Acabou de se conectar!
+ |27/Nov/18 23:56| [J] Acabou de se conectar!
+ |28/Nov/18 00:00| [Paul] Acabou de se conectar!
+ |28/Nov/18 00:01| [Paul] Acabou de se conectar!
+ |28/Nov/18 00:05| [Paul] Acabou de se conectar!
+ |28/Nov/18 01:12| [r] Acabou de se conectar!
+ |28/Nov/18 01:34| [p] Acabou de se conectar!
+ |28/Nov/18 02:00| [p] Acabou de se conectar!
+ |28/Nov/18 02:04| [P] Acabou de se conectar!
+ |28/Nov/18 02:08| [Paul] Acabou de se conectar!
+ |28/Nov/18 02:11| [Paul] Acabou de se conectar!
+ |28/Nov/18 02:12| [p] Acabou de se conectar!
+ |28/Nov/18 02:20| [Paul] Acabou de se conectar!
+ |28/Nov/18 02:21| [P] Acabou de se conectar!
+ |28/Nov/18 02:21| [p] Acabou de se conectar!
+ |28/Nov/18 02:23| [p] Acabou de se conectar!
+ |28/Nov/18 02:29| [p] Acabou de se conectar!
+ |28/Nov/18 02:31| [Paul] Acabou de se conectar!
+ |28/Nov/18 02:32| [Roger] Acabou de se conectar!
+ |28/Nov/18 02:34| [p] Acabou de se conectar!
+ |28/Nov/18 11:37| [Paul] Acabou de se conectar!
+ |28/Nov/18 11:39| [Jonny] Acabou de se conectar!
+ |28/Nov/18 11:50| [Roger] Acabou de se conectar!
+ |28/Nov/18 11:51| [Roger] Now it's time to see what I've done here
+ |28/Nov/18 11:51| [Roger] and if it is working or not
+ |28/Nov/18 12:08| [Roger] Acabou de se conectar!
+ |28/Nov/18 12:33| [Paul] Acabou de se conectar!
+ |28/Nov/18 13:44| [Paul] Acabou de se conectar!
+ |28/Nov/18 13:46| [Paul] Acabou de se conectar!
+ |28/Nov/18 13:47| [Jonny] Acabou de se conectar!
+ |28/Nov/18 13:49| [Robert] Acabou de se conectar!
+ |28/Nov/18 13:53| [Paul] Acabou de se conectar!
+ |28/Nov/18 13:55| [Paul] hey
+ |28/Nov/18 13:55| [Paul] how are you?
+ |28/Nov/18 13:56| [Robert] Acabou de se conectar!
+ |28/Nov/18 13:58| [Jonny] Acabou de se conectar!
+ |28/Nov/18 13:59| [Paul] Acabou de se conectar!
+ |28/Nov/18 14:00| [Robert] Acabou de se conectar!
+ |28/Nov/18 14:03| [Robert] Acabou de se conectar!
+ |28/Nov/18 14:05| [Robert] Acabou de se conectar!
+ |28/Nov/18 14:05| [Paul] Acabou de se conectar!
+ |28/Nov/18 14:11| [Jonny] Acabou de se conectar!
+ |28/Nov/18 14:12| [Paul] Acabou de se conectar!
+ |28/Nov/18 14:16| [Robert] Acabou de se conectar!

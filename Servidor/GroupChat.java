@@ -16,6 +16,7 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 
 	public GroupChat() throws RemoteException{ }
 
+
 	public boolean registro(MessengerInterface dadosUsuario) throws RemoteException{
 		if (!lista.containsKey(dadosUsuario.getNomeUsuario())) {
 
@@ -28,32 +29,67 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 
 	}
 
-	public boolean login(String nomeUsuario, String passe, GroupChatInterface servidor) throws RemoteException{
+	// public boolean login(String nomeUsuario, String passe,  MessengerInterface dadosUsuario) throws RemoteException{
+	public boolean login(MessengerInterface dadosUsuario) throws RemoteException{
 		try {
-			MessengerInterface usuarioLogado = this.lista.get(nomeUsuario);
-			if (!usuarioLogado.getPasse().equals(passe)){
-				usuarioLogado.diz("[Servidor] Bem-vindo " + usuarioLogado.getNomeUsuario()+ "!");
+			String usuario = "";
+			if (!dadosUsuario.getNomeUsuario().equals("")) {
+				usuario = dadosUsuario.getNomeUsuario();
+			}
+
+			String senha = "";
+			if (!dadosUsuario.getPasse().equals("")) {
+				senha = dadosUsuario.getPasse();
+			}
+
+			MessengerInterface dados = null;
+			if (this.lista.get(usuario) != null) {
+				dados = this.lista.get(usuario);
+			} else {
+				return false;
+			}
+
+			String passLista = "";
+			if (!dados.getPasse().toString().equals("")) {
+				passLista = dados.getPasse().toString();
+			}
+
+			if (this.lista.get(usuario).equals(null)) {
+				return false;
+			}
+
+			if (dadosUsuario.getPasse().equals(passLista)){
+
+				dadosUsuario.diz("[Servidor] Bem-vindo " + usuario+ "!");
+				System.out.println("Usuário: |"+ usuario+ "| logado com sucesso!");
+
 				// carrega histórico msg a todos
 				String nomeArquivo = "historicoConversas.txt";
 				Path path = Paths.get(nomeArquivo);
 				if (new File(nomeArquivo).exists()) {
 						List<String> allLines = Files.readAllLines(path);
 						for (String line : allLines) {
-							usuarioLogado.diz(line);
+							dadosUsuario.diz(line);
 						}
 				}
+
 				// verifica se há ficheiro de histórico msg priv e carrega em tela
-				nomeArquivo = usuarioLogado.getNomeUsuario()+ ".txt";
+				nomeArquivo = usuario+ ".txt";
 				path = Paths.get(nomeArquivo);
 				if (new File(nomeArquivo).exists()) {
 						List<String> allLines = Files.readAllLines(path);
 						for (String line : allLines) {
-							usuarioLogado.diz(line);
+							dadosUsuario.diz(line);
 						}
 				}
-			} else{
-        return false;
-      }
+			} else {
+				//elimina os dados para não serem usados para login incorreto
+				dadosUsuario.setServidor(null);
+				dadosUsuario.setPasse("");
+				dadosUsuario.setNomeUsuario("");
+				return false;
+
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -63,11 +99,12 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 	public void enviaPraTodos(String texto, MessengerInterface deQuem) throws RemoteException{
 
 		System.out.println("\n[" + deQuem.getNomeUsuario() + "] " + texto);
-		// Enumeration usuarios = lista.keys();
+
 		Enumeration usuarios = lista.keys();
 		String agora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MMM/uu HH:mm"));
 		String msgTratada = "\n |" + agora + "| [" + deQuem.getNomeUsuario() + "] " + texto;
-		// OUTPUT PARA UM FICHEIRO
+
+		// SALVA CONVERSA A TODOS PARA UM FICHEIRO CADA VEZ QUE ALGUÉM ENVIA MSG
 		geraArquivo(msgTratada, "historicoConversas.txt");
 
     while(usuarios.hasMoreElements()){
@@ -90,7 +127,8 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 		String msgTratada = "\n |" + agora + "| *MP* [" + quemMandou.getNomeUsuario() + "] " + msg;
 		String nomeArquivoDeQuem = quemMandou.getNomeUsuario() + ".txt";
 		String nomeArquivoParaQuem = destino.getNomeUsuario() + ".txt";
-		// OUTPUT PARA UM FICHEIRO
+
+		// SALVA CONVERSA PRIVADA PARA REMETENTE E DISTINATÁRIO PARA UM FICHEIRO
 		geraArquivo(msgTratada, nomeArquivoDeQuem);
 		geraArquivo(msgTratada, nomeArquivoParaQuem);
 
@@ -123,7 +161,6 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 		try {
 			Files.write(path, strToBytes,
 					StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-			// String read = Files.readAllLines(path).get(0);
 		} catch(IOException e) {
 			e.printStackTrace();
 		} catch(Exception e) {

@@ -21,8 +21,24 @@ public class Messenger extends UnicastRemoteObject implements MessengerInterface
 		return nomeUsuario;
 	}
 
+	public void setNomeUsuario(String nomeUsuario) throws RemoteException{
+		this.nomeUsuario = nomeUsuario;
+	}
+
 	public String getPasse() throws RemoteException{
 		return passe;
+	}
+
+	public void setPasse(String passe) throws RemoteException{
+		this.passe = passe;
+	}
+
+	public GroupChatInterface getServidor() throws RemoteException{
+		return servidor;
+	}
+
+	public void setServidor(GroupChatInterface servidor) throws RemoteException{
+		this.servidor = servidor;
 	}
 
 	public void diz(String texto) throws RemoteException{

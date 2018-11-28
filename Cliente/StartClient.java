@@ -46,6 +46,7 @@ public class StartClient {
               aa = "2";
             } else if (!server.registro(dadosUsuario)) {
               System.out.println("\nNome de usuário [" +  dadosUsuario.getNomeUsuario() + "] já está cadastrado!");
+              break;
             }
             break;
 
@@ -74,14 +75,14 @@ public class StartClient {
         }
       }
 
-
-
       DataInputStream digita = new DataInputStream (System.in);
       aa = "//";
 
+      // Loop que permite o Sistema permanecer em execução e dar as opções disponíveis
       for(;;){
 
         switch(aa){
+          //opção do Menu para mostrar as opções disponíveis para o Sistema
           case "//":
             System.out.println("\n****************************************\n"
                                 + "**                                    **\n"
@@ -93,26 +94,30 @@ public class StartClient {
                                 + "**                                    **\n"
                                 + "****************************************\n");
             break;
-
+            //opção do Menu para listar os usuário ativos
           case "??":
             server.listaUsuarios(dadosUsuario);
             break;
-
+          //opção do Menu para iniciar canal de mensagem privada com um dos integrantes do grupo
           case ">>":
             System.out.println("\nPara Mensagem Privada, informe qual dos\n" + "Usuários online:");
             server.listaUsuarios(dadosUsuario);
+
+            System.out.print("Qual a pessoa?  ");
             String selecionado = digita.readLine();
             System.out.print("Msg: ");
             String msgPv = digita.readLine();
-            System.out.println("\nPara finalizar MP, digite << \n"+ "a qualquer momento!" );
-            server.enviarPrivado(selecionado,msgPv, dadosUsuario);
+            System.out.println("\nPara encerrar a MP, digite << \n"+ "a qualquer momento!\n" );
+
+            // inicia sessão de mensagem privada até que seja digitado <<
             do {
               System.out.print("*MP* Você: ");
-              msgPv = digita.readLine();
               server.enviarPrivado(selecionado,msgPv, dadosUsuario);
+              msgPv = digita.readLine();
             } while(!msgPv.equals("<<"));
             break;
 
+          //opção do Menu para envio de arquivo
           case "++":
             server.listaUsuarios(dadosUsuario);
             System.out.print("Informe o destinatário do conteúdo: ");

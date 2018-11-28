@@ -6,7 +6,15 @@ public interface MessengerInterface  extends Remote{
 
 	public String getNomeUsuario() throws RemoteException;
 
+	public void setNomeUsuario(String nomeUsuario) throws RemoteException;
+
 	public String getPasse() throws RemoteException;
+
+	public void setPasse(String passe) throws RemoteException;
+
+	public GroupChatInterface getServidor() throws RemoteException;
+
+	public void setServidor(GroupChatInterface servidor) throws RemoteException;
 
 	public void diz(String texto) throws RemoteException;
 
