@@ -9,10 +9,12 @@ public class Messenger extends UnicastRemoteObject implements MessengerInterface
 
 	private String nomeUsuario;
 	private String passe;
+	private GroupChatInterface servidor;
 
-	public Messenger(String u, String p) throws RemoteException {
+	public Messenger(String u, String p, GroupChatInterface s) throws RemoteException {
 		nomeUsuario = u;
 		passe = p;
+		servidor = s;
 	}
 
 	public String getNomeUsuario() throws RemoteException{
@@ -27,7 +29,7 @@ public class Messenger extends UnicastRemoteObject implements MessengerInterface
 		System.out.println(texto);
 	}
 
-	public boolean lerArquivo(String nomeArquivo, String paraQuem, GroupChatInterface servidor) throws RemoteException{
+	public boolean lerArquivo(String nomeArquivo, String paraQuem) throws RemoteException{
 		/* Sending File...*/
 		 try{
 			 File arq = new File(nomeArquivo);

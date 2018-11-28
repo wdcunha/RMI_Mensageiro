@@ -8,7 +8,8 @@ public interface GroupChatInterface extends Remote {
 
 		public boolean registro(MessengerInterface dadosUsuario) throws RemoteException;
 
-		public boolean login(String nomeUsuario, String passe, GroupChatInterface servidor) throws RemoteException;
+		// public boolean login(String nomeUsuario, String passe, MessengerInterface dadosUsuario) throws RemoteException;
+		public boolean login(MessengerInterface dadosUsuario) throws RemoteException;
 
 	  public void enviaPraTodos(String texto, MessengerInterface deQuem) throws RemoteException;
 

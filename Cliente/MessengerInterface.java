@@ -10,7 +10,7 @@ public interface MessengerInterface  extends Remote{
 
 	public void diz(String texto) throws RemoteException;
 
-	public boolean lerArquivo(String nomeArquivo, String paraQuem, GroupChatInterface servidor) throws RemoteException;
+	public boolean lerArquivo(String nomeArquivo, String paraQuem) throws RemoteException;
 
 	public boolean gravaArquivo(String nomeArquivo, byte[] dado, int carga) throws RemoteException;
 

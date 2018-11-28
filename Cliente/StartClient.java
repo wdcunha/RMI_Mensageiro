@@ -17,9 +17,9 @@ public class StartClient {
       Scanner scanner = new Scanner(System.in);
       Console console = System.console();
 
-      System.out.print("\033[H\033[2J");
-      System.out.flush();
-      System.out.println("[System] Mensageiro Cliente está em execução!");
+      // System.out.print("\033[H\033[2J");
+      // System.out.flush();
+      System.out.println("[Sistema] Mensageiro Cliente está em execução!");
 
       System.out.print("Escolha uma das opções: \n1 - Registar\n2 - Login\n--> ");
       String aa = scanner.nextLine();
@@ -36,13 +36,13 @@ public class StartClient {
             nomeUsuario = scanner.nextLine();
             passe = new String(console.readPassword("Palavra passe: "));
             if (nomeUsuario.equals("") || passe.equals("")) {
-              System.out.println("[System] Nome de usuário e/ou palavra passe devem ser preenchidos!");
+              System.out.println("[Sistema] Nome de usuário e/ou palavra passe devem ser preenchidos!");
               aa = "1";
               break;
             }
-            dadosUsuario = new Messenger(nomeUsuario, passe);
+            dadosUsuario = new Messenger(nomeUsuario, passe, server);
             if (server.registro(dadosUsuario)) {
-              System.out.println("[System] Usuário criado com Sucesso!");
+              System.out.println("[Sistema] Usuário criado com Sucesso!\n\n[Sistema] Informe a seguir os dados para aceder ao sistema.");
               aa = "2";
             } else if (!server.registro(dadosUsuario)) {
               System.out.println("\nNome de usuário [" +  dadosUsuario.getNomeUsuario() + "] já está cadastrado!");
@@ -57,9 +57,14 @@ public class StartClient {
             System.out.print("Nome do usuário: ");
             nomeUsuario = scanner.nextLine();
             passe = new String(console.readPassword("Palavra passe: "));
-            // dadosUsuario = new Messenger(nomeUsuario, passe, server);
-            server.login(nomeUsuario, passe, server);
-            server.enviaPraTodos("Acabou de se conectar!", dadosUsuario);
+            dadosUsuario = new Messenger(nomeUsuario, passe, server);
+            if (server.login(dadosUsuario)) {
+              server.enviaPraTodos("Acabou de se conectar!", dadosUsuario);
+            } else {
+              System.out.println("[Sistema] Nome de usuário e/ou palavra inválido(s)!");
+              cond = false;
+              break;
+            }
             cond = true;
             break;
 
@@ -114,7 +119,7 @@ public class StartClient {
             String destinatario = digita.readLine();
             System.out.print("Indique o nome do ficheiro: ");
             String nomeArquivo = digita.readLine();
-            dadosUsuario.lerArquivo(nomeArquivo, destinatario, server);
+            dadosUsuario.lerArquivo(nomeArquivo, destinatario);
           break;
 
           default:
