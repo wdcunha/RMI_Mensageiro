@@ -20,7 +20,7 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 	public boolean registro(MessengerInterface dadosUsuario) throws RemoteException{
 		if (!lista.containsKey(dadosUsuario.getNomeUsuario())) {
 
-			System.out.println(" Usuário criado com Sucesso!");
+			System.out.println("\n[Sistema] Usuário criado com Sucesso!");
 			lista.put(dadosUsuario.getNomeUsuario(), dadosUsuario);
 
 			return true;
@@ -33,13 +33,11 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 	public boolean login(MessengerInterface dadosUsuario) throws RemoteException{
 		try {
 			String usuario = "";
-			if (!dadosUsuario.getNomeUsuario().equals("")) {
+			if (this.lista.containsKey(dadosUsuario.getNomeUsuario())) {
 				usuario = dadosUsuario.getNomeUsuario();
-			}
-
-			String senha = "";
-			if (!dadosUsuario.getPasse().equals("")) {
-				senha = dadosUsuario.getPasse();
+			} else {
+				dadosUsuario.diz("[Sistema] Nome não cadastrado " + usuario + "!");
+				return false;
 			}
 
 			MessengerInterface dados = null;

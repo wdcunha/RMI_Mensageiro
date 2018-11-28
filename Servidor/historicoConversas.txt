@@ -123,3 +123,17 @@
  |28/Nov/18 14:11| [Jonny] Acabou de se conectar!
  |28/Nov/18 14:12| [Paul] Acabou de se conectar!
  |28/Nov/18 14:16| [Robert] Acabou de se conectar!
+ |28/Nov/18 17:01| [Paul] Acabou de se conectar!
+ |28/Nov/18 17:01| [Jonny] Acabou de se conectar!
+ |28/Nov/18 17:01| [Jonny] Hi falks!
+ |28/Nov/18 17:18| [Paul] Acabou de se conectar!
+ |28/Nov/18 17:19| [Jon] Acabou de se conectar!
+ |28/Nov/18 17:29| [P] Acabou de se conectar!
+ |28/Nov/18 17:32| [P] Acabou de se conectar!
+ |28/Nov/18 17:40| [Pedro] Acabou de se conectar!
+ |28/Nov/18 17:41| [Jose] Acabou de se conectar!
+ |28/Nov/18 17:43| [Pedro] Acabou de se conectar!
+ |28/Nov/18 17:44| [Pedro] Acabou de se conectar!
+ |28/Nov/18 17:45| [Pedro] ddkdalskd
+ |28/Nov/18 17:47| [Jose] Acabou de se conectar!
+ |28/Nov/18 17:50| [Robert] Acabou de se conectar!
