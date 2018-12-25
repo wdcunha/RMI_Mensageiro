@@ -12,13 +12,15 @@ public class StartClient {
     try {
       System.setSecurityManager(new RMISecurityManager());
 
+      // GroupChatInterface server = (GroupChatInterface)Naming.lookup("rmi://localhost/ABCD");
       GroupChatInterface server = (GroupChatInterface)Naming.lookup("rmi://localhost/ABCD");
 
       Scanner scanner = new Scanner(System.in);
       Console console = System.console();
 
-      // System.out.print("\033[H\033[2J");
-      // System.out.flush();
+      // clean the screen when start the system
+      System.out.print("\033[H\033[2J");
+      System.out.flush();
       System.out.println("[Sistema] Mensageiro Cliente está em execução!");
 
       System.out.print("Escolha uma das opções: \n1 - Registar\n2 - Login\n--> ");
@@ -80,7 +82,7 @@ public class StartClient {
 
           default:
             System.out.print("Opção inválida!");
-          break;
+            break;
         }
       }
 

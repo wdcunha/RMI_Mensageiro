@@ -19,10 +19,8 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 
 	public boolean registro(MessengerInterface dadosUsuario) throws RemoteException{
 		if (!lista.containsKey(dadosUsuario.getNomeUsuario())) {
-
 			System.out.println("\n[Sistema] Usuário criado com Sucesso!");
 			lista.put(dadosUsuario.getNomeUsuario(), dadosUsuario);
-
 			return true;
 		}
 		return false;
@@ -152,7 +150,7 @@ public class GroupChat extends UnicastRemoteObject implements GroupChatInterface
 			e.printStackTrace();
 		}
 	}
-
+	// gera ficheiro para histórico para ambos, conversa privada e para todos
 	public void geraArquivo(String texto, String nomeArquivo)throws RemoteException{
 		Path path = Paths.get(nomeArquivo);
 		byte[] strToBytes = texto.getBytes();

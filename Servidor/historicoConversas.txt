@@ -137,3 +137,17 @@
  |28/Nov/18 17:45| [Pedro] ddkdalskd
  |28/Nov/18 17:47| [Jose] Acabou de se conectar!
  |28/Nov/18 17:50| [Robert] Acabou de se conectar!
+ |28/Nov/18 18:35| [Pedro] Acabou de se conectar!
+ |28/Nov/18 18:37| [Jonny] Acabou de se conectar!
+ |28/Nov/18 18:38| [Paul] Acabou de se conectar!
+ |28/Nov/18 18:38| [Paul] Hi guys
+ |28/Nov/18 18:38| [Paul] h r u doing?
+ |28/Nov/18 19:36| [Maria] Acabou de se conectar!
+ |28/Nov/18 19:41| [Maria] kjhjh
+ |28/Nov/18 19:57| [Paul] Acabou de se conectar!
+ |28/Nov/18 19:58| [Jonny] Acabou de se conectar!
+ |28/Nov/18 19:58| [Jonny] Hi everybody
+ |28/Nov/18 19:59| [David] Acabou de se conectar!
+ |28/Nov/18 19:59| [Jonny] David
+ |25/Dec/18 16:23| [Pedro] Acabou de se conectar!
+ |25/Dec/18 16:23| [Pedro] teste
